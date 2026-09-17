@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Почему я тебя люблю, Женечка ❤️</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #c9a9ff 0%, #e6d6ff 50%, #c9a9ff 100%);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(10px);
+    border-radius: 28px;
+    padding: 40px 35px;
+    max-width: 640px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(140, 80, 220, 0.3);
+    position: relative;
+    z-index: 2;
+  }
+
+  .top-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+
+  .photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 30px rgba(150, 80, 220, 0.4);
+    animation: floaty 3s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  .photo.left  { animation-delay: 0s; }
+  .photo.right { animation-delay: 1.5s; }
+
+  h1 {
+    font-size: 1.25rem;
+    color: #7a3fd6;
+    font-weight: 700;
+    line-height: 1.3;
+    flex: 1;
+  }
+
+  .name {
+    color: #a54bff;
+    font-style: italic;
+    font-weight: 800;
+    text-shadow: 0 2px 12px rgba(165, 75, 255, 0.35);
+    display: inline-block;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.06); }
+  }
+
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  .reason {
+    font-size: 1.35rem;
+    color: #3d2a55;
+    line-height: 1.5;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    word-wrap: break-word;
+  }
+
+  .reason.fade {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  button {
+    margin-top: 25px;
+    background: linear-gradient(135deg, #ff6ba6, #ff3d7f);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 42px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(255, 61, 127, 0.45);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.4s ease;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(255, 61, 127, 0.55);
+  }
+
+  button:active {
+    transform: scale(0.96);
+  }
+
+  .counter {
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: #9a7ac4;
+  }
+
+  .heart {
+    position: fixed;
+    bottom: -50px;
+    font-size: 24px;
+    opacity: 0.5;
+    animation: floatUp linear infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  @media (max-width: 480px) {
+    .top-row {
+      flex-direction: column;
+      gap: 14px;
+    }
+    .photo {
+      width: 95px;
+      height: 95px;
+    }
+    h1 {
+      font-size: 1.15rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="top-row">
+    <img src="zenya1.jpg" alt="Женечка" class="photo left">
+    <h1>Почему я тебя люблю,<br><span class="name">Женечка</span> ❤️</h1>
+    <img src="zenya2.jpg" alt="Женечка" class="photo right">
+  </div>
+
+  <div class="reason" id="reason">Нажми на кнопку 👇</div>
+  <button id="btn">Ещё причина ✨</button>
+  <div class="counter" id="counter"></div>
+</div>
+
+<script>
+  // ====== ПРИЧИНЫ: твои 10 + её 11 ======
+  const reasons = [
+    // === Твои 10 (оставляем) ===
+    "За твою улыбку, от которой у меня всё внутри переворачивается.",
+    "За то, как ты морщишь нос, когда смеёшься.",
+    "За твой голос — я могу слушать его бесконечно.",
+    "За то, что ты всегда рядом, даже когда я молчу.",
+    "За то, как ты заботишься обо мне, когда я уставший.",
+    "За твои объятия, в которых весь мир замирает.",
+    "За то, что ты понимаешь меня с полуслова.",
+    "За твои глаза — в них можно утонуть.",
+    "За то, что ты умеешь делать обычный день особенным.",
+    "За то, что ты моя. И это самое большое счастье.",
+
+    // === Её 11 (новые) ===
+    "За твои кудряшки",
+    "За любовь к искусству",
+    "За вкусные вечера",
+    "За учения в истории",
+    "За осенние прогулки",
+    "За любовь к сериалам",
+    "За водительские навыки",
+    "За терпение",
+    "За то что ты со мной готова на любые приключения",
+    "За то что смеешься над моими дурацкими шутками",
+    "За любовь к велосипеду (ред.)"
+  ];
+  // ======================================
+
+  const reasonEl = document.getElementById('reason');
+  const btn = document.getElementById('btn');
+  const counter = document.getElementById('counter');
+
+  let used = [];
+  let busy = false;
+  let finished = false;
+
+  function showRandom() {
+    if (busy || finished) return;
+    busy = true;
+
+    let idx;
+    do {
+      idx = Math.floor(Math.random() * reasons.length);
+    } while (used.includes(idx));
+
+    used.push(idx);
+
+    reasonEl.classList.add('fade');
+    counter.textContent = `${used.length} / ${reasons.length}`;
+
+    setTimeout(() => {
+      reasonEl.textContent = reasons[idx];
+      reasonEl.classList.remove('fade');
+      busy = false;
+
+      if (used.length === reasons.length) {
+        finished = true;
+        setTimeout(showFinal, 800);
+      }
+    }, 300);
+  }
+
+  function showFinal() {
+    reasonEl.classList.add('fade');
+
+    setTimeout(() => {
+      reasonEl.innerHTML = 'Спасибо тебе за всё.<br>Я люблю тебя ❤️';
+      reasonEl.style.fontSize = '1.5rem';
+      reasonEl.style.fontWeight = '700';
+      reasonEl.style.color = '#a54bff';
+      reasonEl.style.lineHeight = '1.6';
+      reasonEl.classList.remove('fade');
+
+      btn.style.opacity = '0';
+      btn.style.pointerEvents = 'none';
+
+      counter.textContent = '';
+
+      try {
+        setTimeout(() => {
+          reasonEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+      } catch (e) {}
+    }, 300);
+  }
+
+  btn.addEventListener('click', showRandom);
+
+  const hearts = ['💜', '💕', '💖', '💗', '🌸'];
+  for (let i = 0; i < 12; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.animationDuration = (8 + Math.random() * 8) + 's';
+    h.style.animationDelay = (Math.random() * 10) + 's';
+    h.style.fontSize = (16 + Math.random() * 20) + 'px';
+    document.body.appendChild(h);
+  }
+</script>
+
+</body>
+</html>
